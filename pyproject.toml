@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "parallelsvd"
+version = "0"
+description = "Computes a right singular vector and the singular vectors of a matrix stored by columns using MPI"
+dependencies = ["numpy", "mpi4py"]
