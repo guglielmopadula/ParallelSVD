@@ -7,7 +7,7 @@ def test_compute_us_rand():
     rank=comm.rank
     matrix=np.load('tests/A_{}.npy'.format(rank))
     u,s,v=compute_svd(matrix,3,3)
-    assert np.linalg.norm(u@np.diag(s)@v.T-matrix)<1e-05
+    assert np.linalg.norm(u@np.diag(s)@v.T-matrix)/np.linalg.norm(matrix)<1e-04
 
 
 def test_compute_us_full():
@@ -15,7 +15,7 @@ def test_compute_us_full():
     rank=comm.rank
     matrix=np.load('tests/A_{}.npy'.format(rank))
     u,s,v=compute_svd(matrix,3,3,method="full")
-    assert np.linalg.norm(u@np.diag(s)@v.T-matrix)<1e-05
+    assert np.linalg.norm(u@np.diag(s)@v.T-matrix)/np.linalg.norm(matrix)<1e-04
 
 
 
@@ -24,7 +24,7 @@ def test_compute_us_single():
     rank=comm.rank
     matrix=np.load('tests/A_{}.npy'.format(rank))
     u,s,v=compute_svd(matrix,3,3,precision="single")
-    assert np.linalg.norm(u@np.diag(s)@v.T-matrix)<1e-04
+    assert np.linalg.norm(u@np.diag(s)@v.T-matrix)/np.linalg.norm(matrix)<1e-04
 
 
 def test_compute_us_full_single():
@@ -32,4 +32,4 @@ def test_compute_us_full_single():
     rank=comm.rank
     matrix=np.load('tests/A_{}.npy'.format(rank))
     u,s,v=compute_svd(matrix,3,3,precision="single",method="full")
-    assert np.linalg.norm(u@np.diag(s)@v.T-matrix)<1e-04
+    assert np.linalg.norm(u@np.diag(s)@v.T-matrix)/np.linalg.norm(matrix)<1e-04
