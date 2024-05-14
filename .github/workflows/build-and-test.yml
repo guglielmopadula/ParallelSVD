@@ -38,4 +38,4 @@ jobs:
 
     - name: Test
       run: |
-        mpirun -n 10 pytest
+        mpirun -n 10 --oversubscribe pytest
